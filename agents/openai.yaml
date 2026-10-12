@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub 项目管理与发布"
+  short_description: "个人 GitHub 项目建仓、合规体检与版本发布向导"
+  default_prompt: "使用 $manage-github-projects 管理我的 GitHub 项目：先确认公开范围，再建仓首推、做合规体检，最后按语义化版本发布。"

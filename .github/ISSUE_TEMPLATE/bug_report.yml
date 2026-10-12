@@ -1,0 +1,58 @@
+name: Bug report
+description: 报告一个可复现的问题
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请先运行 `python scripts/validate_skill.py .` 与 `python -m unittest discover -s tests -v`，
+        并把结果贴在下面对应字段里。不要在 issue 中粘贴任何真实凭据。
+  - type: input
+    id: version
+    attributes:
+      label: 版本或提交
+      description: 例如 v1.0.0 或提交短哈希
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: 环境
+      description: 操作系统、Python 版本、git 版本、使用的 Agent（DSH / Codex / Claude Code 等）
+      placeholder: |
+        OS: Windows 11
+        Python: 3.12.5
+        git: 2.54.0
+        Agent: DeepSeek Harness
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 命令输出
+      description: 已排查过凭据与个人信息
+      render: shell
+    validations:
+      required: false

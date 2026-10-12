@@ -1,0 +1,41 @@
+# 构建产物与依赖
+node_modules/
+dist/
+build/
+out/
+target/
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# 本地环境与凭据
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+credentials.json
+
+# 日志与打包文件
+*.log
+npm-debug.log*
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# 项目状态（本地生成，可选是否公开）
+# docs/github/
