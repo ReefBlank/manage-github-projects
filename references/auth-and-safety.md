@@ -50,12 +50,20 @@
 | 查询提交身份 | `git config user.name` / `git config user.email` | 否 |
 | 查询远程地址 | `git remote -v` | 否（注意：带 token 的 URL 会泄漏，见下） |
 
-`git credential fill` 属于**有条件允许**：它由 Git 自己解析凭据助手，可能把密码返回给标准输出。使用时必须满足：
+`git credential fill` 属于**有条件允许**：它由 Git 自己解析凭据助手，可能把密码返回给标准输出。调用时需要从标准输入提供协议与主机，例如：
+
+```bash
+printf 'protocol=https\nhost=github.com\n\n' | git credential fill
+```
+
+使用时必须满足：
 
 1. 只用于判断「该主机是否已有可用凭据」，不做其他用途；
-2. 不把完整输出写进对话、日志或文件；
-3. 只报告「用户名 X 的凭据可用，作用域包含 repo」这类**脱敏**结论；
-4. 若输出中出现 `password=` 字段，直接丢弃，只在内部判断其是否存在。
+2. 必须显式提供输入，避免命令在等待交互输入时挂起，或弹出图形化凭据窗口打扰用户；
+3. 不把完整输出写进对话、日志或文件；
+4. 只报告「用户名 X 的凭据可用，作用域包含 repo」这类**脱敏**结论；
+5. 若输出中出现 `password=` 字段，直接丢弃，只在内部判断其是否存在；
+6. 无法确认是否会弹出交互提示时，改用 `git config --get credential.helper` 与 `gh auth status` 判断，不要运行本条。
 
 ### 3.2 禁止执行的命令（不得以任何理由运行）
 
